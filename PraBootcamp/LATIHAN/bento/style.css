@@ -1,0 +1,214 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+
+  --gap: clamp(1rem, 2vw, 2rem);
+  --pad: clamp(1.5rem, 3vw, 3rem);
+  --radius: clamp(14px, 2vw, 28px);
+
+  --h-wide: clamp(200px, 25vw, 320px);  
+  --h-small: clamp(180px, 22vw, 280px); 
+  --h-tall: clamp(420px, 52vw, 660px);  
+
+  --lacquer: #3a2420;
+  --ink: #2a1d1a;
+  --rice: #f4efe3;
+  --skewer: #d9c4a3;
+  --okazu: #e6b97a;
+  --tsukemono: #b9c6a2;
+}
+
+body {
+  min-height: 100vh;
+  background: #ece6d8;
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.4;
+}
+
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: clamp(0.75rem, 3vw, 2.5rem);
+}
+
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--gap);
+  padding: var(--pad);
+  background: var(--lacquer);
+  border-radius: calc(var(--radius) * 1.4);
+}
+
+.bento-box {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  align-items: flex-start; 
+  gap: 0.75rem;
+  padding: clamp(1rem, 2vw, 1.75rem);
+  border-radius: var(--radius);
+  border: 2px solid rgba(42, 29, 26, 0.25);
+}
+
+.box-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--rice);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.box-title {
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+}
+
+.box-desc {
+  margin-top: 0.25rem;
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  opacity: 0.75;
+}
+
+.box-gohan      { background: var(--rice); }
+.box-skewer     { background: var(--skewer); }
+.box-okazu      { background: var(--okazu); }
+.box-tsukemono  { background: var(--tsukemono); }
+
+.box-gohan {
+  grid-column: span 2;
+  grid-row: span 1;
+  min-height: var(--h-wide);
+}
+
+.box-skewer {
+  grid-column: 3;
+  grid-row: span 2;
+  min-height: var(--h-tall);
+}
+
+.box-okazu {
+  grid-column: span 1;
+  min-height: var(--h-small);
+}
+
+.box-tsukemono {
+  grid-column: span 1;
+  min-height: var(--h-small);
+}
+
+.bento-container.mode-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--gap);
+}
+
+.bento-container.mode-flex .box-gohan {
+  flex: 1 1 calc((200% - var(--gap)) / 3);
+  height: var(--h-wide);
+  min-height: 0;
+}
+
+.bento-container.mode-flex .box-skewer {
+  flex: 1 1 calc((100% - 2 * var(--gap)) / 3);
+  height: calc(var(--h-wide) + var(--gap) + var(--h-small));
+  min-height: 0;
+
+  margin-bottom: calc(-1 * (var(--h-small) + var(--gap)));
+}
+
+.bento-container.mode-flex .box-okazu,
+.bento-container.mode-flex .box-tsukemono {
+  flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
+  height: var(--h-small);
+  min-height: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .box-gohan {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+
+  .box-skewer {
+    grid-column: span 2;
+    grid-row: auto;
+    min-height: var(--h-wide);
+    order: 3;  
+  }
+
+  .box-okazu       { grid-column: span 1; order: 1; }
+  .box-tsukemono   { grid-column: span 1; order: 2; }
+
+  .bento-container.mode-flex .box-gohan,
+  .bento-container.mode-flex .box-skewer {
+    flex: 1 1 100%;
+    height: auto;
+    min-height: var(--h-wide);
+    margin-bottom: 0;
+  }
+
+  .bento-container.mode-flex .box-okazu,
+  .bento-container.mode-flex .box-tsukemono {
+    flex: 1 1 calc((100% - var(--gap)) / 2);
+    height: auto;
+    min-height: var(--h-small);
+  }
+
+  .bento-container.mode-flex .box-okazu     { order: 1; }
+  .bento-container.mode-flex .box-tsukemono { order: 2; }
+  .bento-container.mode-flex .box-skewer    { order: 3; }
+}
+
+@media (max-width: 767px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+  }
+
+  .box-gohan,
+  .box-skewer,
+  .box-okazu,
+  .box-tsukemono {
+    grid-column: 1 / -1; 
+    grid-row: auto;
+    order: 0;
+  }
+
+  .box-gohan      { min-height: clamp(160px, 40vw, 220px); }
+  .box-skewer     { min-height: clamp(220px, 60vw, 320px); }
+  .box-okazu,
+  .box-tsukemono  { min-height: clamp(150px, 38vw, 200px); }
+
+  .bento-container.mode-flex .box-gohan,
+  .bento-container.mode-flex .box-skewer,
+  .bento-container.mode-flex .box-okazu,
+  .bento-container.mode-flex .box-tsukemono {
+    flex: 1 1 100%;
+    height: auto;
+    margin-bottom: 0;
+    order: 0;
+  }
+
+  .bento-container.mode-flex .box-gohan      { min-height: clamp(160px, 40vw, 220px); }
+  .bento-container.mode-flex .box-skewer     { min-height: clamp(220px, 60vw, 320px); }
+  .bento-container.mode-flex .box-okazu,
+  .bento-container.mode-flex .box-tsukemono  { min-height: clamp(150px, 38vw, 200px); }
+}
