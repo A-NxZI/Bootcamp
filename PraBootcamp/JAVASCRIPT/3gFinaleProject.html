@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Warkop Terbuka</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-5 fw-bold text-primary">Kasir Warkop Terbuka ☕</h1>
+
+        <!-- ================= HALAMAN UTAMA ================= -->
+        <div id="halaman-utama">
+            <div class="row">
+                <!-- Kolom Kiri: Daftar Menu -->
+                <div class="col-md-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">Daftar Menu</h4>
+                        </div>
+                        <div class="card-body" id="area-menu">
+                            <!-- Menu akan di-render otomatis oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Daftar Belanja (Keranjang) -->
+                <div class="col-md-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="mb-0">Daftar Belanja</h4>
+                        </div>
+                        <div class="card-body" id="area-keranjang">
+                            <!-- Keranjang belanja akan di-render otomatis oleh JavaScript -->
+                        </div>
+                        <!-- Footer Kartu Belanja -->
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="mb-0">Total</h5>
+                                <h4 class="mb-0 fw-bold text-success" id="total-harga">Rp.0</h4>
+                            </div>
+                            <button onclick="prosesCheckout()" class="btn btn-success btn-lg w-100">Bayar Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN STRUK (CHECKOUT) ================= -->
+        <div id="halaman-stroke" class="d-none">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body text-center p-5">
+                            <h2 class="text-success fw-bold mb-4">Pembayaran Berhasil ✅</h2>
+                            <h5 class="text-muted">Rangkuman Pesanan Anda</h5>
+                            
+                            <hr>
+                            <!-- Detail Struk Belanja -->
+                            <div id="detail-stroke" class="text-start">
+                                <!-- Tabel struk akan di-render otomatis oleh JavaScript -->
+                            </div>
+                            <hr>
+
+                            <button onclick="pesananSelesai()" class="btn btn-primary w-100">Selesaikan dan Buat Pesanan Baru</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="3gFinaleProject.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+</html>
