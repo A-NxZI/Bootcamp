@@ -1,7 +1,13 @@
-// Penggunaan let (Block Scope)
-let x = 10;
-if (true) {
-  let x = 20; // Variabel yang berbeda dari x di luar
-  console.log(x); // Output: 20
+window.onload = function(){
+
+const pi = 3.14;
+
+    function calcArea(r){
+        const pi = 22/7;
+        console.log("The area is :"+ pi * r * r);
+    }
+
+    console.log(pi)
+    calcArea(5);
+
 }
-console.log(x); // Output: 10
